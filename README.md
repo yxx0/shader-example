@@ -12,5 +12,5 @@ TypeScript
 范例均放置在assets/example目录下
 ```
 ### 老化效果(older)
-![参考图](.\data\older.gif)  
+![参考图](https://raw.githubusercontent.com/yxx0/shader-example/main/data/older.gif)  
 参考链接or参考原理: https://www.jianshu.com/p/711a54ff2fa0
