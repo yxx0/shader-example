@@ -13,6 +13,13 @@ CCEffect %{
       properties:
         texture: { value: white }
         alphaThreshold: { value: 0.5 }
+        progress: {
+          value: 1.0,
+          inspector: {
+            tooltip: "变化程度",
+            range: [0.0, 1.0]
+          }
+        }
 }%
 
 
@@ -64,6 +71,19 @@ CCProgram fs %{
   uniform sampler2D texture;
   #endif
 
+  uniform info {
+    // 变化程度
+    float progress;
+  };
+
+
+  vec4 older(vec4 color) {
+    float r = 0.393 * color.r + 0.769 * color.g + 0.189 * color.b;
+    float g = 0.349 * color.r + 0.686 * color.g + 0.168 * color.b; 
+    float b = 0.272 * color.r + 0.534 * color.g + 0.131 * color.b;
+    return vec4(r, g, b, color.a);
+  }
+
   void main () {
     vec4 o = vec4(1, 1, 1, 1);
 
@@ -75,10 +95,11 @@ CCProgram fs %{
 
     ALPHA_TEST(o);
 
-    #if USE_BGRA
-      gl_FragColor = o.bgra;
-    #else
-      gl_FragColor = o.rgba;
-    #endif
+    vec4 srcColor = o;
+    vec4 newColor = older(srcColor);
+    o = srcColor + (newColor - srcColor) * progress;
+
+    gl_FragColor = o;
+
   }
 }%

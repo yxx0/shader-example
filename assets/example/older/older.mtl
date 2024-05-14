@@ -1,0 +1,20 @@
+{
+  "__type__": "cc.Material",
+  "_name": "color-cover-gradient",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "5a426796-d68a-4691-9eab-8c806318de82"
+  },
+  "_techniqueIndex": 0,
+  "_techniqueData": {
+    "0": {
+      "defines": {
+        "USE_TEXTURE": false
+      },
+      "props": {
+        "progress": 0
+      }
+    }
+  }
+}
